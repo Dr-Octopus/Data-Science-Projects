@@ -13,11 +13,16 @@ This Kaggle [competition](https://www.kaggle.com/c/deepfake-detection-challenge/
 **Figure 3: tSNE of 20,000 facial encodings.**
 ![Final clustering groups using DBSCAN](https://github.com/Dr-Octopus/Data-Science-Projects/blob/master/Computer-Vision/Figures/DBSCAN.png)
 **Figure 4: Final clustering groups using DBSCAN.**
+
 ![Samples of nine clusters, each face is taken from an individual video. Other similar samples can be found in the Figures folder](https://github.com/Dr-Octopus/Data-Science-Projects/blob/master/Computer-Vision/Figures/Clustering_samples6.png)
+
 **Figure 5: Samples of nine clusters, each face is taken from an individual video. Other similar samples can be found in the Figures folder.**
+
  - During the challenge I explored several Convolutional Neural Networks (CNN) architectures and used transfer learning to implement some of the best networks in the field. One of the main obstacles in this competition was the tendency of CNN to over-fit on the training data, and the networks may even memorize the faces. To overcome this, I decided to create masks of the altered regions and used Semantic Segmentation networks to detect those regions. This allows the network to focus only on the altered features, rather let the network decide on the features. The notebook that generates the segmentation masks is here [(02_Prepare_data.ipynb)](https://github.com/Dr-Octopus/Data-Science-Projects/blob/master/Computer-Vision/02_Prepare_data.ipynb "02_Prepare_data.ipynb").
 
 ![Samples of real, fake, and segmentation masks used to train the networks](https://github.com/Dr-Octopus/Data-Science-Projects/blob/master/Computer-Vision/Figures/Segmentation%20Mask.png)
+
 **Figure 6: Samples of real, fake, and segmentation masks used to train the networks.**
+
  - Another challenge that I had to overcome was the time restriction to classify the videos. Each video needs to be classified in less than 8 seconds. However, facial detection on its own is very time consuming. Therefore, I tackled this problem by running facial detection on every second, and then I interpolated and extrapolated the face bounding box locations to find the faces at every frame of the video. This allowed me to find the faces at all the frames in 1.5 seconds only, leaving the rest of the time for classification.
  - Unfortunately, I joined the competition at the last three weeks only, and I did not have enough time to reach the top of the leader board. However, the method that I was using, was also used by several teams that won in the top 5 positions.
